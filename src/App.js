@@ -1,19 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import database from './firebase';
+import { rtdb, db } from './firebase';
 import { useState } from 'react';
 
 const uploadData = () => {
-  database.ref('data').set({
+  const data = {
     voltage: 190,
     current: 1.1,
     date: Date.call(),
-  })
+  }
+  rtdb.ref('data').set(data);
+  db.collection('data').add(data);
 }
 
 const App = () => {
   const [date, setDate] = useState('')
-  const savedData = database.ref('data');
+  const savedData = rtdb.ref('data');
 
   savedData.on('child_changed', snapshot => {
     const record = snapshot.val();
