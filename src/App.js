@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { rtdb, db } from './firebase';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const uploadData = () => {
   const data = {
@@ -16,11 +16,18 @@ const uploadData = () => {
 const App = () => {
   const [date, setDate] = useState('')
   const savedData = rtdb.ref('data');
+  
 
   savedData.on('child_changed', snapshot => {
     const record = snapshot.val();
     setDate(record);
   })
+
+  useEffect(() => {
+    savedData.once('value').then(snapshot => {
+      setDate(snapshot.val().date)
+    })
+  },[])
 
   return (
     <div className="App">
