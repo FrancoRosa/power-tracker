@@ -1,6 +1,6 @@
 import requests
-url = 'https://us-central1-pwr-trkr.cloudfunctions.net/addText'
-url = 'http://localhost:5001/pwr-trkr/us-central1/measurements'
+url = 'http://localhost:5001/pwr-trkr/us-central1/measurements' # local firebase emulator
+url = 'https://us-central1-pwr-trkr.cloudfunctions.net/measurements' # legacy firebase server
 message = {
   "Vrs": 221.1,
   "Vrt": 221.1,
@@ -16,4 +16,5 @@ message = {
 response = requests.post(url, json=message)
 print(">> url:", url)
 print(">>> tx:", message)
+print(">>> rx:", response)
 print(">>> rx:", response.json())
