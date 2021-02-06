@@ -2,8 +2,14 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 admin.initializeApp();
 
-exports.addText = functions.https.onRequest(async (req, res) => {
-  const text = req.body.text;
-  const writeResult = await admin.firestore().collection('texts').add({text: text});
-  res.json({result: `Message with ID: ${writeResult.id} added.`});
+exports.measurements = functions.https.onRequest(async (req, res) => {
+  const data = req.body;
+  if (Object.keys(data).length == 10){
+    let timestamp = new Date().toISOString()
+    await admin.firestore().collection('measurements').doc("A").set(data)
+    await admin.database().ref('measurements').set(data)
+    res.json({ message: "ok" });
+  } else {
+    res.json({ message: "error" });
+  }
 });
