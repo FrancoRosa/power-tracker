@@ -5,19 +5,20 @@ import Time from './Time';
 
 const Measurement = () => {
   const [measurement, setMeasurement] = useState({})
-  const savedData = rtdb.ref('measurement');
+  const savedData = rtdb.ref('measurements');
 
-  savedData.on('child_changed', snapshot => {
-    const lastMeasurement = snapshot.val();
-    setMeasurement(lastMeasurement);
+  const getData = () => {
+    savedData.once('value').then(snapshot => {
+      setMeasurement(snapshot.val())
+    })
+  };
+
+  savedData.on('child_changed', () => {
+    getData();
   })
 
   useEffect(() => {
-    savedData.once('value').then(snapshot => {
-      setMeasurement(snapshot.val())
-      console.log('---> Effect')
-      console.log(measurement)
-    })
+    getData();
   },[])
 
   return (
@@ -25,22 +26,22 @@ const Measurement = () => {
       <Time />
       <div className="variables_container">
         <div className="variables">
-          <Variable name='Vr' value="22.1" unit='V'/>
-          <Variable name='Vs' value="12.1" unit='V'/>
-          <Variable name='Vt' value="22.1" unit='V'/>
+          <Variable name='Vrs' value={measurement.Vrs} unit='V'/>
+          <Variable name='Vrt' value={measurement.Vrt} unit='V'/>
+          <Variable name='Vst' value={measurement.Vst} unit='V'/>
         </div>
         <div className="variables">
-          <Variable name='Ir' value="22.1" unit='I'/>
-          <Variable name='Is' value="12.1" unit='I'/>
-          <Variable name='It' value="22.1" unit='I'/>
+          <Variable name='Ir' value={measurement.Ir} unit='A'/>
+          <Variable name='Is' value={measurement.Is} unit='A'/>
+          <Variable name='It' value={measurement.It} unit='A'/>
         </div>
         <div className="variables">
-          <Variable name='Pr' value="22.1" unit='W'/>
-          <Variable name='Ps' value="12.1" unit='W'/>
-          <Variable name='Pt' value="22.1" unit='W'/>
+          <Variable name='Prs' value={measurement.Wrs} unit='W'/>
+          <Variable name='Prt' value={measurement.Wrt} unit='W'/>
+          <Variable name='Pst' value={measurement.Wst} unit='W'/>
         </div>
         <div className="variables">
-          <Variable name='F' value="22.1" unit='Hz'/>
+          <Variable name='F' value={measurement.F} unit='Hz'/>
         </div>
       </div>
       
