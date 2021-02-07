@@ -39,10 +39,11 @@ const Measurement = () => {
           <Variable name='Ps' value="12.1" unit='W'/>
           <Variable name='Pt' value="22.1" unit='W'/>
         </div>
+        <div className="variables">
+          <Variable name='F' value="22.1" unit='Hz'/>
+        </div>
       </div>
-      <div className="variables_one">
-        <Variable name='F' value="22.1" unit='Hz'/>
-      </div>
+      
     </div>
   );
 } 
