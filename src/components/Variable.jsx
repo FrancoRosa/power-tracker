@@ -1,8 +1,9 @@
-const Variable = ({name, value}) => {
+const Variable = ({name, value, unit}) => {
   return (
     <div className="variable">
-      <h3>{name}</h3>
-      <p>{value}</p>
+      <p>{name}:</p>
+      <p className="value">{value}</p>
+      <p>{unit}</p>
     </div>
   )
 }

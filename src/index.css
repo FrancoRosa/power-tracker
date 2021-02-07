@@ -1,13 +1,71 @@
+@font-face {
+  font-family: 'PressStart2P';
+  src: local('PressStart2P'), url(./fonts/PressStart2P-Regular.ttf) format('truetype');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: PressStart2P;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  background-color: #2f292b;
+  background-image: linear-gradient(45deg, #000 4%, #464242);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+  color: lightslategray
+}
+
+.footer{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.time {
+  position: absolute;
+  color: #ff0202;
+  top: 0;
+  right: 10px;
+}
+
+.variables {
+  color: #ff0202;
+  border: solid 1px red;
+  margin: 1em;
+  padding: 1em;
+}
+
+.variables_one {
+  color: #ff0202;
+  border: solid 1px red;
+  margin: 1em;
+  padding: 1em;
+  width: 27%;
+}
+
+
+
+.variables_container {
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  width: 100%;
+  padding: 3.5rem 0 1rem;
+
+}
+
+.variable {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.variable > .value {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
 }
