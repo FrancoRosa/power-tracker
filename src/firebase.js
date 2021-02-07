@@ -11,5 +11,12 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
-export const rtdb = firebase.database();
-export const db = firebase.firestore();
+const rtdb = firebase.database()
+const db = firebase.firestore()
+
+if (window.location.hostname === "localhost") {
+  db.useEmulator("localhost", 8080);
+  rtdb.useEmulator("localhost", 9000);
+} 
+
+export { rtdb, db };

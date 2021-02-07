@@ -7,7 +7,7 @@ exports.measurements = functions.https.onRequest(async (req, res) => {
   if (Object.keys(data).length == 10){
     let timestamp = new Date().toISOString()
     await admin.firestore().collection('measurements').doc(timestamp).set(data)
-    await admin.database().ref('measurements').set({timestamp, ...data})
+    await admin.database().ref('measurements').update({timestamp, ...data})
     res.json({ message: "ok" });
   } else {
     res.json({ message: "error" });

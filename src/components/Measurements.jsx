@@ -2,28 +2,25 @@ import { rtdb, db } from '../firebase';
 import { useEffect, useState } from 'react';
 import Variable from './Variable';
 import Time from './Time';
+import Timestamp from './Timestamp';
 
 const Measurement = () => {
   const [measurement, setMeasurement] = useState({})
   const savedData = rtdb.ref('measurements');
 
-  const getData = () => {
-    savedData.once('value').then(snapshot => {
-      setMeasurement(snapshot.val())
-    })
-  };
-
-  savedData.on('child_changed', () => {
-    getData();
-  })
-
   useEffect(() => {
-    getData();
+    console.log('>>> Use effect');
+    savedData.on('value', snapshot => {
+      if (snapshot.exists()) {
+        setMeasurement(snapshot.val());
+      }
+    })
   },[])
 
   return (
     <div>
       <Time />
+      <Timestamp timestamp={measurement.timestamp}/>
       <div className="variables_container">
         <div className="variables">
           <Variable name='Vrs' value={measurement.Vrs} unit='V'/>
