@@ -9,7 +9,6 @@ const Measurement = () => {
   const savedData = rtdb.ref('measurements');
 
   useEffect(() => {
-    console.log('>>> Use effect');
     savedData.on('value', snapshot => {
       if (snapshot.exists()) {
         setMeasurement(snapshot.val());

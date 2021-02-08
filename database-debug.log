@@ -1,2 +1,9 @@
 17:24:14.782 [NamespaceSystem-akka.actor.default-dispatcher-5] INFO akka.event.slf4j.Slf4jLogger - Slf4jLogger started
 17:24:14.982 [main] INFO com.firebase.server.forge.App$ - Listening at localhost:9000
+18:45:19.725 [Thread-1] INFO com.firebase.server.forge.App$ - Attempting graceful shutdown.
+18:45:19.741 [NamespaceSystem-akka.actor.default-dispatcher-126] INFO com.firebase.core.namespace.Terminator$Terminator - 2 actors left to terminate: pwr-trkr, pwr-trkr-default-rtdb
+18:45:19.754 [NamespaceSystem-akka.actor.default-dispatcher-128] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for pwr-trkr-default-rtdb
+18:45:19.756 [NamespaceSystem-akka.actor.default-dispatcher-128] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for pwr-trkr-default-rtdb
+18:45:19.756 [NamespaceSystem-akka.actor.default-dispatcher-127] INFO com.firebase.core.namespace.NamespaceActor - Stopping namespace actor for pwr-trkr
+18:45:19.756 [NamespaceSystem-akka.actor.default-dispatcher-127] INFO com.firebase.core.namespace.NamespaceActor - Gauges removed for pwr-trkr
+18:45:19.763 [Thread-1] INFO com.firebase.server.forge.App$ - Graceful shutdown complete.
